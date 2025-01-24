@@ -3,14 +3,12 @@ class ProclaimCheckout {
    allCampsites = []; // Array of { night: "Wednesday", campsite: "t-51", id: 9489 }
    isAddingLodgingToCart = false;
    cartContents = []; // Array of cart items, e.g. { id: 7984, quantity: 1, name: "Full Event Pass", ... }
-   familyEventPassId = 7986;
-   individualEventPassId = 7984;
-
+   tshirtId = 9671;
+   
    init() {
       this.makeBtnsAjax();
       this.fetchAllCampsites().then(results => this.allCampsites = results);
       this.fetchUnavailableCampsites().then(results => this.unavailableCampsites = results);
-      this.warnBeforeAddingDuplicateEventPasses();
       this.disableMoreThan5NightsAtCampsite();
       this.fetchCartContents().then(results => this.cartContents = results);
       this.listenForWooCommerceEvents();
@@ -101,29 +99,41 @@ class ProclaimCheckout {
     */
    showTShirtImage(e) {
       const targetForm = e.target;
-      const isTeeForm = targetForm ? !!jQuery(targetForm).parent("#product-9671") : false;
-      const colorSelector = targetForm ? targetForm.querySelector("#design") : null;
-      if (targetForm && isTeeForm && colorSelector) {
+      const isTeeForm = targetForm ? !!jQuery(targetForm).parent(`#product-${this.tshirtId}`) : false;
+      const designSelector = targetForm ? targetForm.querySelector("#design") : null;
+      if (targetForm && isTeeForm && designSelector) {
          const teeImages = {
-            "white": [
-               "/wp-content/uploads/2024/03/proclaim-24-tee-white-front.jpg", // white front
-               "/wp-content/uploads/2024/03/proclaim-24-tee-white-back.jpg", // white back
+            "New Song Tshirt Sandstone": [
+               "/wp-content/uploads/2024/03/New-Song-Tshirt-Sandstone-Front-Proclaim2025.jpg", 
+               "/wp-content/uploads/2024/03/New-Song-Tshirt-Sandstone-Back-Proclaim2025.jpg", 
             ],
-            "yam": [
-               "/wp-content/uploads/2024/03/proclaim-24-tee-yam-front.jpg", // yam front
-               "/wp-content/uploads/2024/03/proclaim-24-tee-yam-back.jpg", // yam back
+            "New Song Tshirt Blue Spruce": [
+               "/wp-content/uploads/2024/03/New-Song-Tshirt-Blue-Spruce-Front-Proclaim2025.jpg", 
+               "/wp-content/uploads/2024/03/New-Song-Tshirt-Blue-Spruce-Back-Proclaim2025.jpg",
             ],
-            "charcoal": [
-               "/wp-content/uploads/2024/03/proclaim-24-tee-charcoal-front.jpg", // charcoal front
-               "/wp-content/uploads/2024/03/proclaim-24-tee-charcoal-back.jpg" // charcoal back
+            "Kingdom Family Tshirt Pepper": [
+               "/wp-content/uploads/2024/03/Kingdom-Family-Tshirt-Pepper-Front-Proclaim2025.jpg",
+               "/wp-content/uploads/2024/03/Kingdom-Family-Tshirt-Pepper-Back-Proclaim2025.jpg"
             ],
-            "terracotta": [
-               "/wp-content/uploads/2024/03/proclaim-24-tee-terracotta-front.jpg", // charcoal front
-               "/wp-content/uploads/2024/03/proclaim-24-tee-terracotta-back.jpg" // charcoal back
+            "Kingdom Family Kids Tshirt Pepper": [
+               "/wp-content/uploads/2024/03/Kingdom-Family-Tshirt-Pepper-Front-Proclaim2025.jpg",
+               "/wp-content/uploads/2024/03/Kingdom-Family-Tshirt-Pepper-Back-Proclaim2025.jpg"
+            ],
+            "Kingdom Family Sweatshirt Pepper": [
+               "/wp-content/uploads/2024/03/Kingdom-Family-Sweatshirt-Pepper-Front-Proclaim2025.jpg",
+               "/wp-content/uploads/2024/03/Kingdom-Family-Sweatshirt-Pepper-Back-Proclaim2025.jpg"
+            ],
+            "Kingdom Family Sweatshirt Blue Spruce": [
+               "/wp-content/uploads/2024/03/Kingdom-Family-Sweatshirt-Blue-Spruce-Front-Proclaim2025.jpg",
+               "/wp-content/uploads/2024/03/Kingdom-Family-Sweatshirt-Blue-Spruce-Back-Proclaim2025.jpg"
+            ],
+            "Kingdom Family Sweatshirt Blue Spruce": [
+               "/wp-content/uploads/2024/03/Kingdom-Family-Sweatshirt-Blue-Spruce-Front-Proclaim2025.jpg",
+               "/wp-content/uploads/2024/03/Kingdom-Family-Sweatshirt-Blue-Spruce-Back-Proclaim2025.jpg"
             ]
          };
 
-         const selectedDesign = (colorSelector.value || "").toLowerCase();
+         const selectedDesign = (designSelector.value || "").toLowerCase();
          const imagesToUse = teeImages[selectedDesign];
          if (imagesToUse) {
             const imageLinks = Array.from(document.querySelectorAll(".shirt-imgs-container a") || []);
@@ -170,26 +180,7 @@ class ProclaimCheckout {
       // Refresh our cart contents.
       this.fetchCartContents().then(result => this.cartContents = result);
    }
-
-   warnBeforeAddingDuplicateEventPasses() {
-      // Warn user before adding add full event pass for family and full event pass for individual.
-      const eventPassSection = document.querySelector("#product-7983");
-      const passTypeSelector = eventPassSection.querySelector("#pass-type");
-      passTypeSelector.addEventListener("change", e => {
-         const isFamilySelected = passTypeSelector.value === "Family";
-         const isIndividualSelected = passTypeSelector.value === "Individual";
-         const alreadyHasFamilyAndChoseIndividual = this.cartContents.some(c => c.id === this.familyEventPassId && isIndividualSelected);
-         const alreadyHasIndividualAndChoseFamily = this.cartContents.some(c => c.id === this.individualEventPassId && isFamilySelected);
-         if (alreadyHasFamilyAndChoseIndividual) {
-            this.showEventPassWarning("You already have a family event pass in your cart.", passTypeSelector);
-         } else if (alreadyHasIndividualAndChoseFamily) {
-            this.showEventPassWarning("You already have an individual event pass in your cart.", passTypeSelector);
-         } else {
-            this.hideEventPassWarning();
-         }
-      });
-   }
-
+   
    showEventPassWarning(warningMessage, passTypeSelector) {
       let eventPassAlertElement = document.querySelector(".event-pass-warning");
       if (!eventPassAlertElement) {
