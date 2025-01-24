@@ -322,7 +322,7 @@ class ProclaimCheckout {
       // Create our iframe.
       const pickerFrame = document.createElement("iframe");
       const unavailableCampsites = this.unavailableCampsites.map(s => s.campsite);
-      pickerFrame.src = `https://proclaim.b-cdn.net/campsite-picker-2024.html?disable=${unavailableCampsites.join(",")}`;
+      pickerFrame.src = `https://judahgabriel.github.io/Proclaim/campsite-picker-2025.html?disable=${unavailableCampsites.join(",")}`;
       pickerFrame.title = "Choose your campsite";
 
       // Create our container which will allow scrolling as needed.
