@@ -949,8 +949,9 @@
 			}
 
 			function disableSites(siteIds) {
+				const loweredSiteIds = siteIds.map(i => i.toLowerCase());
 				allSites
-					.filter(s => siteIds.includes(s.getAttribute("data-id")))
+					.filter(s => siteIds.includes((s.getAttribute("data-id") || "").toLowerCase()))
 					.forEach(s => {
 						s.classList.add("unavailable");
 						s.title = "This campsite has already been reserved.";
