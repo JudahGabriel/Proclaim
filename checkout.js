@@ -55,8 +55,14 @@ class ProclaimCheckout {
       // This will clear any "✔ Added to cart" text back to "Add to cart"
       jQuery(document.body).on("woocommerce_variation_select_change", e => this.resetAddToCartBtn(e));
 
-      // When we select a t-shirt color, show the t-shirt image.
-      jQuery(document.body).on("woocommerce_variation_select_change", e => this.showTShirtImage(e));
+      // When we select a t-shirt design, update the t-shirt image.
+      const tshirtProductSelector = `.product-${this.tshirtId} form`;
+      const tshirtForm = document.querySelector(tshirtProductSelector);
+      if (tshirtForm) {
+         jQuery(tshirtForm).on("woocommerce_variation_select_change", e => this.showTShirtImage(e));
+      } else {
+         console.error("Couldn't find tshirt form using selector", tshirtProductSelector);
+      }
    }
 
    /**
@@ -133,7 +139,7 @@ class ProclaimCheckout {
             ]
          };
 
-         const selectedDesign = (designSelector.value || "").toLowerCase();
+         const selectedDesign = (designSelector.value || "");
          const imagesToUse = teeImages[selectedDesign];
          if (imagesToUse) {
             const imageLinks = Array.from(document.querySelectorAll(".shirt-imgs-container a") || []);
