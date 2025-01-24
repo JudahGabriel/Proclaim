@@ -56,7 +56,7 @@ class ProclaimCheckout {
       jQuery(document.body).on("woocommerce_variation_select_change", e => this.resetAddToCartBtn(e));
 
       // When we select a t-shirt design, update the t-shirt image.
-      document.body.addEventListener("change", e => this.showTShirtImage(e));
+      document.body.addEventListener("change", e => this.changeFired(e));
    }
 
    /**
@@ -93,15 +93,13 @@ class ProclaimCheckout {
    }
 
    /**
-    * Called when a variation selection has changed (woocommerce_variation_select_change event).
+    * Called when the change event is bubbled up to the body.
     * Purpose here is to set the t-shirt image preview if the user changed the t-shirt color selector.
     * @param {Event} e 
     */
    showTShirtImage(e) {
-      const targetForm = e.target;
-      const isTeeForm = targetForm ? !!jQuery(targetForm).parent(`#product-${this.tshirtId}`) : false;
-      const designSelector = targetForm ? targetForm.querySelector("#design") : null;
-      if (targetForm && isTeeForm && designSelector) {
+      const designSelector = e.target && e.target.id === "design" ? e.target : null;
+      if (designSelector && designSelector.closest(`#product-${this.tshirtId}`)) {
          const teeImages = {
             "New Song Tshirt Sandstone": [
                "/wp-content/uploads/2024/03/New-Song-Tshirt-Sandstone-Front-Proclaim2025.jpg", 
