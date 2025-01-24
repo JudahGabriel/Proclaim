@@ -56,7 +56,7 @@ class ProclaimCheckout {
       jQuery(document.body).on("woocommerce_variation_select_change", e => this.resetAddToCartBtn(e));
 
       // When we select a t-shirt design, update the t-shirt image.
-      document.body.addEventListener("change", e => this.changeFired(e));
+      document.body.addEventListener("change", e => this.showTShirtImage(e));
    }
 
    /**
