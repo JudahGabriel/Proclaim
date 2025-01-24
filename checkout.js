@@ -56,13 +56,17 @@ class ProclaimCheckout {
       jQuery(document.body).on("woocommerce_variation_select_change", e => this.resetAddToCartBtn(e));
 
       // When we select a t-shirt design, update the t-shirt image.
-      const tshirtProductSelector = `.product-${this.tshirtId} form`;
-      const tshirtForm = document.querySelector(tshirtProductSelector);
-      if (tshirtForm) {
-         jQuery(tshirtForm).on("woocommerce_variation_select_change", e => this.showTShirtImage(e));
-      } else {
-         console.error("Couldn't find tshirt form using selector", tshirtProductSelector);
-      }
+      jquery(() => { // Inside a $(() => ...) block so that it will execute when the DOM is ready.
+         const tshirtProductSelector = `.product-${this.tshirtId} form`;
+         const tshirtForm = document.querySelector(tshirtProductSelector);
+         if (tshirtForm) {
+            jQuery(tshirtForm).on("woocommerce_variation_select_change", e => this.showTShirtImage(e));
+         } else {
+            console.error("Couldn't find tshirt form using selector", tshirtProductSelector);
+         }
+      });
+
+      document.querySelector("body").addEventListener("change", e => console.log("zanz changed fired!", e.target));
    }
 
    /**
