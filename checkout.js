@@ -3,7 +3,8 @@ class ProclaimCheckout {
    allCampsites = []; // Array of { night: "Wednesday", campsite: "t-51", id: 9489 }
    isAddingLodgingToCart = false;
    cartContents = []; // Array of cart items, e.g. { id: 7984, quantity: 1, name: "Full Event Pass", ... }
-   tshirtId = 9671;
+   adultTshirtId = 9671;
+   youthTshirtId = 10102;
    
    init() {
       this.makeBtnsAjax();
@@ -99,7 +100,9 @@ class ProclaimCheckout {
     */
    showTShirtImage(e) {
       const designSelector = e.target && e.target.id === "design" ? e.target : null;
-      if (designSelector && designSelector.closest(`#product-${this.tshirtId}`)) {
+      const isAdultShirt = designSelector && designSelector.closest(`#product-${this.adultTshirtId}`);
+      const isChildShirt = designSelector && designSelector.closest(`#product-${this.youthTshirtId`);
+      if (isAdultShirt || isChildShirt) {
          const teeImages = {
             "New Song Tshirt Sandstone": [
                "/wp-content/uploads/2024/03/New-Song-Tshirt-Sandstone-Front-Proclaim2025.jpg", 
