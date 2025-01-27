@@ -101,7 +101,7 @@ class ProclaimCheckout {
    showTShirtImage(e) {
       const designSelector = e.target && e.target.id === "design" ? e.target : null;
       const isAdultShirt = designSelector && designSelector.closest(`#product-${this.adultTshirtId}`);
-      const isChildShirt = designSelector && designSelector.closest(`#product-${this.youthTshirtId`);
+      const isChildShirt = designSelector && designSelector.closest(`#product-${this.youthTshirtId}`);
       if (isAdultShirt || isChildShirt) {
          const teeImages = {
             "New Song Tshirt Sandstone": [
