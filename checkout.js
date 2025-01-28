@@ -50,7 +50,7 @@ class ProclaimCheckout {
       jQuery(document.body).on("removed_from_cart", (e) => this.removedFromCart(e));
 
       // When we click the add to cart button, we want to disable the button until it's added to cart.
-      //jQuery(document).on("click", ".single_add_to_cart_button:not(.disabled)", e => this.addToCartBtnClicked(e));
+      jQuery(document).on("click", ".single_add_to_cart_button:not(.disabled)", e => this.addToCartBtnClicked(e));
 
       // When the user makes a selection, reset all add-to-cart buttons.
       // This will clear any "✔ Added to cart" text back to "Add to cart"
