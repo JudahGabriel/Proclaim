@@ -79,10 +79,10 @@ class ProclaimCheckout {
          }
 
          // ZANZ testing
-         // return true; // needed to bubble the event up for jQuery
+         return true; // needed to bubble the event up for jQuery
       }
 
-      return true;
+      // return true;
    }
 
    /**
