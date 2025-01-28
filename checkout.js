@@ -26,7 +26,7 @@ class ProclaimCheckout {
       // This script is automatically loaded on product pages, but not on our custom register page here.
       const ajaxAddToCartScript = document.createElement("script");
       ajaxAddToCartScript.src = "/wp-content/plugins/woo-ajax-add-to-cart/assets/frontend/woo-ajax-add-to-cart.js";
-      document.body.appendChild(ajaxAddToCartScript);
+      // document.body.appendChild(ajaxAddToCartScript);
    }
 
    disableAddToCartBtns() {
