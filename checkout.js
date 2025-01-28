@@ -46,8 +46,9 @@ class ProclaimCheckout {
    listenForWooCommerceEvents() {
       // Listen for cart change events so we can keep track of what's in the cart.
       // We need this to show warning messages when the user does weird stuff, such as adding both a family event pass and an individual event pass.
-      jQuery(document.body).on("added_to_cart", (e) => this.addedToCart(e));
-      jQuery(document.body).on("removed_from_cart", (e) => this.removedFromCart(e));
+      //jQuery(document.body).on("added_to_cart", (e) => this.addedToCart(e));
+      //jQuery(document.body).on("removed_from_cart", (e) => this.removedFromCart(e));
+      // temp removed zanz for testing
 
       // When we click the add to cart button, we want to disable the button until it's added to cart.
       jQuery(document).on("click", ".single_add_to_cart_button:not(.disabled)", e => this.addToCartBtnClicked(e));
@@ -417,4 +418,4 @@ class ProclaimCheckout {
    }
 }
 
-// new ProclaimCheckout().init();
+new ProclaimCheckout().init();
