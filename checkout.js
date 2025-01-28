@@ -26,8 +26,7 @@ class ProclaimCheckout {
       // This script is automatically loaded on product pages, but not on our custom register page here.
       const ajaxAddToCartScript = document.createElement("script");
       ajaxAddToCartScript.src = "/wp-content/plugins/woo-ajax-add-to-cart/assets/frontend/woo-ajax-add-to-cart.js";
-      // document.body.appendChild(ajaxAddToCartScript);
-      // ZANZ temp remove AJAX add to cart to diagnose issue with vendor table not being added to cart
+      document.body.appendChild(ajaxAddToCartScript);
    }
 
    disableAddToCartBtns() {
@@ -418,4 +417,4 @@ class ProclaimCheckout {
    }
 }
 
-new ProclaimCheckout().init();
+// new ProclaimCheckout().init();
