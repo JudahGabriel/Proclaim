@@ -54,10 +54,10 @@ class ProclaimCheckout {
 
       // When the user makes a selection, reset all add-to-cart buttons.
       // This will clear any "✔ Added to cart" text back to "Add to cart"
-      //jQuery(document.body).on("woocommerce_variation_select_change", e => this.resetAddToCartBtn(e));
+      jQuery(document.body).on("woocommerce_variation_select_change", e => this.resetAddToCartBtn(e));
 
       // When we select a t-shirt design, update the t-shirt image.
-      //document.body.addEventListener("change", e => this.showTShirtImage(e));
+      document.body.addEventListener("change", e => this.showTShirtImage(e));
    }
 
    /**
@@ -77,7 +77,8 @@ class ProclaimCheckout {
             this.isAddingLodgingToCart = true;
          }
 
-         return true; // needed to bubble the event up for jQuery
+         // ZANZ testing
+         // return true; // needed to bubble the event up for jQuery
       }
    }
 
