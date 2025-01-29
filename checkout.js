@@ -7,7 +7,7 @@ class ProclaimCheckout {
    youthTshirtId = 10102;
    
    init() {
-      this.makeBtnsAjax();
+      // this.makeBtnsAjax(); // COMMENTED OUT: no longer needed as of 1/28/25
       this.fetchAllCampsites().then(results => this.allCampsites = results);
       this.fetchUnavailableCampsites().then(results => this.unavailableCampsites = results);
       this.disableMoreThan5NightsAtCampsite();
@@ -26,7 +26,7 @@ class ProclaimCheckout {
       // This script is automatically loaded on product pages, but not on our custom register page here.
       const ajaxAddToCartScript = document.createElement("script");
       ajaxAddToCartScript.src = "/wp-content/plugins/woo-ajax-add-to-cart/assets/frontend/woo-ajax-add-to-cart.js";
-      // document.body.appendChild(ajaxAddToCartScript);
+      document.body.appendChild(ajaxAddToCartScript);
    }
 
    disableAddToCartBtns() {
@@ -69,7 +69,7 @@ class ProclaimCheckout {
    addToCartBtnClicked(e) {
       const btn = e.target;
       if (btn) {
-         btn.disabled = true;
+         // btn.disabled = true;
          btn.classList.add("async-adding");
          btn.innerHTML = "<i class='fa fa-circle-o-notch fa-spin fa-fw'></i>&nbsp;<span>Adding to cart...</span>";
 
@@ -78,11 +78,8 @@ class ProclaimCheckout {
             this.isAddingLodgingToCart = true;
          }
 
-         // ZANZ testing
          return true; // needed to bubble the event up for jQuery
       }
-
-      // return true;
    }
 
    /**
