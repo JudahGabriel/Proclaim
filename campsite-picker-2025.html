@@ -299,13 +299,12 @@
 				}
 
 				.southwest-rvs {
-					margin-left: 50px;
+					margin-left: -55px;
 					margin-top: 30px;
 				}
 
 				.west-rvs {
-					margin-left: -20px;
-					margin-top: 115px;
+					margin-left: -110px;
 				}
 			}
 
@@ -320,7 +319,7 @@
 				}
 
 				.midwest-tents {
-					margin-top: -35px;
+					margin-top: 17px;
 				}
 
 				.garden-tents {
@@ -345,12 +344,12 @@
 					.midwest-tents {
 						display: flex;
 						flex-direction: column;
-						margin-top: 65px;
 					}
 
 					.marketplace-sites {
 						display: flex;
-						margin-left: 80px;
+						margin-left: 65px;
+						transform: translateY(15px);
 					}
 				}
 
@@ -369,18 +368,16 @@
 						margin: 3.5px 3px;
 					}
 
+					.small-vertical-tents {
+						margin-top: -27px;
+					}
+
 					.central-barn {
 						width: 100px;
 						height: 70px;
 						transform: rotateZ(-3deg);
-						margin-left: -20px;
-					}
-
-					.porta-potties {
-						display: flex;
-						margin-top: -10px;
-						transform: rotateZ(-3deg);
-						margin-left: -10px;
+						margin-left: -90px;
+						margin-top: -4px;
 					}
 				}
 
@@ -426,24 +423,18 @@
 					}
 				}
 
-				.east-barn {
-					width: 250px !important;
-					height: 80px !important;
-					margin-top: 20px !important;
-					margin-left: 50px !important;
+				.east-barn-with-porta-potties {
+					margin-top: 20px;
+					margin-left: 50px;
+
+					.east-barn {
+						width: 250px;
+						height: 80px;
+					}
 				}
 
 				.marketplace-foodtruck-barn {
 					margin-top: -30px;
-				}
-
-				.family-game-area {
-					margin-top: 20px;
-					align-self: center;
-					border: 1px solid silver;
-					padding: 10px;
-					width: 200px;
-					height: 55px;
 				}
 
 				.southcamp {
@@ -458,7 +449,8 @@
 				.stage {
 					width: 100px;
 					height: 45px;
-					margin-left: 100px;
+					margin-top: 50px;
+					margin-bottom: -50px;
 					border: 2px solid black;
 					text-align: center;
 					display: flex;
@@ -505,6 +497,11 @@
 					margin-top: 84px;
 					transform: rotate(-32deg);
 				}
+
+				.checkin-tents {
+					margin-left: -40px;
+					margin-top: 165px;
+				}
 			}
 
 			sl-dialog::part(base) {
@@ -541,12 +538,20 @@
 
 				<div class="d-flex-col">
 					<!-- Quiet sites -->
-					<div class="quiet-group">
+					<div class="quiet-group d-flex-col">
 						<div class="d-flex">
+							<div class="tent large" data-id="t-100" data-amp="none" data-size="20x25" data-price="18" data-description="Quiet area tent"><span class="text">100</span></div>
 							<div class="tent large" data-id="t-101" data-amp="none" data-size="20x25" data-price="18" data-description="Quiet area tent"><span class="text">101</span></div>
 							<div class="tent large" data-id="t-102" data-amp="none" data-size="20x25" data-price="18" data-description="Quiet area tent"><span class="text">102</span></div>
 							<div class="tent large" data-id="t-103" data-amp="none" data-size="20x25" data-price="18" data-description="Quiet area tent"><span class="text">103</span></div>
 							<div class="tent large" data-id="t-104" data-amp="none" data-size="20x25" data-price="18" data-description="Quiet area tent"><span class="text">104</span></div>
+						</div>
+						<div class="d-flex">
+							<div class="tent large" data-id="t-105" data-amp="none" data-size="20x25" data-price="18" data-description="Quiet area tent"><span class="text">105</span></div>
+							<div class="tent large" data-id="t-106" data-amp="none" data-size="20x25" data-price="18" data-description="Quiet area tent"><span class="text">106</span></div>
+							<div class="tent large" data-id="t-107" data-amp="none" data-size="20x25" data-price="18" data-description="Quiet area tent"><span class="text">107</span></div>
+							<div class="tent large" data-id="t-108" data-amp="none" data-size="20x25" data-price="18" data-description="Quiet area tent"><span class="text">108</span></div>
+							<div class="tent large" data-id="t-109" data-amp="none" data-size="20x25" data-price="18" data-description="Quiet area tent"><span class="text">109</span></div>
 						</div>
 						<p class="map-label">
 							Quiet campsites
@@ -564,6 +569,12 @@
 					<div class="southwest-rvs d-flex-col">
 						<p class="map-label">Non-electric RV sites</p>
 						<div class="d-flex">
+							<div class="rv" data-id="rv-34" data-price="27" data-amp="none" data-size="20x40" data-description="Camper site"><span class="text">RV-34</span></div>
+							<div class="rv" data-id="rv-33" data-price="27" data-amp="none" data-size="20x40" data-description="Camper site"><span class="text">RV-33</span></div>
+							<div class="rv" data-id="rv-32" data-price="27" data-amp="none" data-size="20x40" data-description="Camper site"><span class="text">RV-32</span></div>
+							<div class="rv" data-id="rv-31" data-price="27" data-amp="none" data-size="20x40" data-description="Camper site"><span class="text">RV-31</span></div>
+							<div class="rv" data-id="rv-30" data-price="27" data-amp="none" data-size="20x40" data-description="Camper site"><span class="text">RV-30</span></div>
+							<div class="rv" data-id="rv-29" data-price="27" data-amp="none" data-size="20x40" data-description="Camper site"><span class="text">RV-29</span></div>
 							<div class="rv" data-id="rv-28" data-price="22" data-amp="none" data-size="20x40" data-description="Camper site"><span class="text">RV-28</span></div>
 							<div class="rv" data-id="rv-27" data-price="22" data-amp="none" data-size="20x40" data-description="Camper site"><span class="text">RV-27</span></div>
 							<div class="rv" data-id="rv-26" data-price="22" data-amp="none" data-size="20x40" data-description="Camper site"><span class="text">RV-26</span></div>
@@ -576,6 +587,10 @@
 				</div>
 
 				<div class="west-rvs d-flex-col">
+					<div class="rv wide electric amp-15" data-id="rv-77" data-price="27" data-amp="15" data-size="20x40" data-description="Camper site"><span class="text">RV-77</span></div>
+					<div class="rv wide electric amp-15" data-id="rv-76" data-price="27" data-amp="15" data-size="20x40" data-description="Camper site"><span class="text">RV-76</span></div>
+					<div class="rv wide electric amp-15" data-id="rv-75" data-price="27" data-amp="15" data-size="20x40" data-description="Camper site"><span class="text">RV-75</span></div>
+					<div class="rv wide electric amp-15" data-id="rv-74" data-price="27" data-amp="15" data-size="20x40" data-description="Camper site"><span class="text">RV-74</span></div>
 					<div class="rv wide electric amp-15" data-id="rv-13" data-price="40" data-amp="30" data-size="20x40" data-description="Camper site"><span class="text">RV-13</span></div>
 					<div class="rv wide electric amp-15" data-id="rv-12" data-price="40" data-amp="30" data-size="20x40" data-description="Camper site"><span class="text">RV-12</span></div>
 					<div class="rv wide electric amp-15" data-id="rv-11" data-price="40" data-amp="30" data-size="20x40" data-description="Camper site"><span class="text">RV-11</span></div>
@@ -602,6 +617,9 @@
 					<div class="rv electric amp-15 rv-19" data-id="rv-19" data-price="30" data-amp="15" data-size="20x40" data-description="Camper site"><span class="text">RV-19</span></div>
 					<div class="rv electric amp-15 rv-20" data-id="rv-20" data-price="30" data-amp="15" data-size="20x40" data-description="Camper site"><span class="text">RV-20</span></div>
 					<div class="rv electric amp-15 rv-21" data-id="rv-21" data-price="30" data-amp="15" data-size="20x40" data-description="Camper site"><span class="text">RV-21</span></div>
+					<div class="rv electric amp-15 rv-59" data-id="rv-59" data-price="30" data-amp="15" data-size="20x40" data-description="Camper site"><span class="text">RV-59</span></div>
+					<div class="rv electric amp-15 rv-60" data-id="rv-60" data-price="30" data-amp="15" data-size="20x40" data-description="Camper site"><span class="text">RV-60</span></div>
+					<div class="rv electric amp-15 rv-61" data-id="rv-61" data-price="30" data-amp="15" data-size="20x40" data-description="Camper site"><span class="text">RV-61</span></div>
 				</div>
 
 				<div class="garden-tents">
@@ -672,19 +690,26 @@
 								</div>
 							</div>
 
-							<div class="marketplace-sites">
-								<div class="d-flex-col">
-									<div class="tent medium electric" data-id="t-152" data-amp="15" data-price="22" data-size="20x20" data-description="Medium tent site"><span class="text">152</span></div>
-									<div class="tent medium electric" data-id="t-153" data-amp="15" data-price="22" data-size="20x20" data-description="Medium tent site"><span class="text">153</span></div>
-									<div class="tent medium electric" data-id="t-154" data-amp="15" data-price="22" data-size="20x20" data-description="Medium tent site"><span class="text">154</span></div>
+							<div class="marketplace-sites d-flex-col">
+								<div class="d-flex">
+									<div class="tent small electric" data-id="t-151" data-amp="15" data-price="27" data-size="15x20" data-description="Small tent site"><span class="text">151</span></div>
+									<div class="tent small electric" data-id="t-152" data-amp="15" data-price="27" data-size="15x20" data-description="Small tent site"><span class="text">152</span></div>
+									<div class="tent small electric" data-id="t-153" data-amp="15" data-price="27" data-size="15x20" data-description="Small tent site"><span class="text">153</span></div>
 								</div>
-								<div class="d-flex-col">
-									<div class="tent medium electric" data-id="t-151" data-amp="30" data-price="15" data-size="20x20" data-description="Medium tent site"><span class="text">151</span></div>
-									<div class="rv electric" data-id="rv-m" data-amp="30" data-price="40" data-size="20x40" data-description="Camper site" style="height: 82px; font-size: 0.9em;"><span class="text">RV-M</span></div>
+								<div class="d-flex">
+									<div class="tent small electric" data-id="t-154" data-amp="15" data-price="27" data-size="15x20" data-description="Small tent site"><span class="text">154</span></div>
+									<div class="tent small electric" data-id="t-155" data-amp="15" data-price="27" data-size="15x20" data-description="Small tent site"><span class="text">155</span></div>
+									<div class="tent small electric" data-id="t-156" data-amp="15" data-price="27" data-size="15x20" data-description="Small tent site"><span class="text">156</span></div>
 								</div>
-								<div class="d-flex-col">
-									<div class="tent medium electric" data-id="t-150" data-amp="30" data-price="15" data-size="20x20" data-description="Medium tent site"><span class="text">150</span></div>
-									<div class="rv electric" data-id="rv-g" data-amp="30" data-price="40" data-size="20x40" data-description="Camper site" style="height: 82px; font-size: 0.9em;"><span class="text">RV-G</span></div>
+								<div class="d-flex mt-2">
+									<div class="tent small electric" data-id="t-157" data-amp="15" data-price="27" data-size="15x20" data-description="Small tent site"><span class="text">157</span></div>
+									<div class="tent small electric" data-id="t-158" data-amp="15" data-price="27" data-size="15x20" data-description="Small tent site"><span class="text">158</span></div>
+									<div class="tent small electric" data-id="t-159" data-amp="15" data-price="27" data-size="15x20" data-description="Small tent site"><span class="text">159</span></div>
+								</div>
+								<div class="d-flex">
+									<div class="tent small electric" data-id="t-160" data-amp="15" data-price="27" data-size="15x20" data-description="Small tent site"><span class="text">160</span></div>
+									<div class="tent small electric" data-id="t-161" data-amp="15" data-price="27" data-size="15x20" data-description="Small tent site"><span class="text">161</span></div>
+									<div class="tent small electric" data-id="t-162" data-amp="15" data-price="27" data-size="15x20" data-description="Small tent site"><span class="text">162</span></div>
 								</div>
 							</div>
 						</div>
@@ -710,6 +735,16 @@
 								<div class="d-flex">
 									<div class="tent jumbo" data-id="t-47" data-amp="none" data-price="18" data-size="25x25" data-description="Jumbo tent site"><span class="text">47</span></div>
 									<div class="tent jumbo" data-id="t-48" data-amp="none" data-price="18" data-size="25x25" data-description="Jumbo tent site"><span class="text">48</span></div>
+									<div class="small-vertical-tents d-flex-col">
+										<div class="d-flex">
+											<div class="tent small vertical" data-id="t-49" data-amp="none" data-price="17" data-size="15x20" data-description="Small tent site"><span class="text">49</span></div>
+											<div class="tent small vertical" data-id="t-50" data-amp="none" data-price="17" data-size="15x20" data-description="Small tent site"><span class="text">50</span></div>
+										</div>
+										<div class="d-flex">
+											<div class="tent small vertical" data-id="t-51" data-amp="none" data-price="17" data-size="15x20" data-description="Small tent site"><span class="text">51</span></div>
+											<div class="tent small vertical" data-id="t-52" data-amp="none" data-price="17" data-size="15x20" data-description="Small tent site"><span class="text">52</span></div>
+										</div>
+									</div>
 								</div>
 							</div>
 
@@ -720,11 +755,6 @@
 										<br>
 										<span>🪵💧⚡</span>
 									</span>
-								</div>
-								<div class="porta-potties">
-									<div class="porta-potty" title="Porta-potty"><span class="text">🚻</span></div>
-									<div class="porta-potty" title="Porta-potty"><span class="text">🚻</span></div>
-									<div class="porta-potty" title="Porta-potty"><span class="text">🚻</span></div>
 								</div>
 							</div>
 
@@ -745,31 +775,57 @@
 									</div>
 								</div>
 
-								<div class="barn east-barn center-text-justify-center" title="Barn with men's shower and coffee station">
-									<span class="text">Barn</span>
+								<div class="east-barn-with-porta-potties d-flex">
+									<div class="porta-potties">
+										<div class="porta-potty" title="Porta-potty"><span class="text">🚻</span></div>
+										<div class="porta-potty" title="Porta-potty"><span class="text">🚻</span></div>
+										<div class="porta-potty" title="Porta-potty"><span class="text">🚻</span></div>
+									</div>
+									<div class="barn east-barn center-text-justify-center" title="Barn with men's shower and coffee station">
+										<span class="text">Barn</span>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 
-				<div class="family-game-area center-text-justify-center">
-					<span class="text">Family game area</span>
-				</div>
-
-				<div class="southcamp d-flex">
-					<div class="tent large" data-id="t-110" data-amp="none" data-size="20x25" data-description="Large tent site" data-price="18"><span class="text">110</span></div>
-					<div class="tent large" data-id="t-111" data-amp="none" data-size="20x25" data-description="Large tent site" data-price="18"><span class="text">111</span></div>
-					<div class="tent large" data-id="t-112" data-amp="none" data-size="20x25" data-description="Large tent site" data-price="18"><span class="text">112</span></div>
-					<div class="tent large" data-id="t-113" data-amp="none" data-size="20x25" data-description="Large tent site" data-price="18"><span class="text">113</span></div>
-					<div class="tent large" data-id="t-114" data-amp="none" data-size="20x25" data-description="Large tent site" data-price="18"><span class="text">114</span></div>
-					<div class="tent large" data-id="t-115" data-amp="none" data-size="20x25" data-description="Large tent site" data-price="18"><span class="text">115</span></div>
-					<div class="tent large" data-id="t-116" data-amp="none" data-size="20x25" data-description="Large tent site" data-price="18"><span class="text">116</span></div>
-					<div class="tent large" data-id="t-117" data-amp="none" data-size="20x25" data-description="Large tent site" data-price="18"><span class="text">117</span></div>
-					<div class="tent large" data-id="t-118" data-amp="none" data-size="20x25" data-description="Large tent site" data-price="18"><span class="text">118</span></div>
-					<div class="tent large" data-id="t-119" data-amp="none" data-size="20x25" data-description="Large tent site" data-price="18"><span class="text">119</span></div>
-					<div class="tent large" data-id="t-120" data-amp="none" data-size="20x25" data-description="Large tent site" data-price="18"><span class="text">120</span></div>
-					<div class="tent large" data-id="t-121" data-amp="none" data-size="20x25" data-description="Large tent site" data-price="18"><span class="text">121</span></div>
+				<div class="southcamp d-flex-col">
+					<div class="d-flex">
+						<div class="tent small" data-id="t-140" data-amp="none" data-size="15x20" data-description="Small tent site" data-price="17"><span class="text">140</span></div>
+						<div class="tent small" data-id="t-141" data-amp="none" data-size="15x20" data-description="Small tent site" data-price="17"><span class="text">141</span></div>
+						<div class="tent small" data-id="t-142" data-amp="none" data-size="15x20" data-description="Small tent site" data-price="17"><span class="text">142</span></div>
+						<div class="tent small ml-2" data-id="t-143" data-amp="none" data-size="15x20" data-description="Small tent site" data-price="17"><span class="text">143</span></div>
+						<div class="tent small" data-id="t-144" data-amp="none" data-size="15x20" data-description="Small tent site" data-price="17"><span class="text">144</span></div>
+						<div class="tent small" data-id="t-145" data-amp="none" data-size="15x20" data-description="Small tent site" data-price="17"><span class="text">145</span></div>
+						<div class="tent small" data-id="t-146" data-amp="none" data-size="15x20" data-description="Small tent site" data-price="17"><span class="text">146</span></div>
+					</div>
+					<div class="d-flex">
+						<div class="tent small" data-id="t-130" data-amp="none" data-size="15x20" data-description="Small tent site" data-price="17"><span class="text">130</span></div>
+						<div class="tent small" data-id="t-131" data-amp="none" data-size="15x20" data-description="Small tent site" data-price="17"><span class="text">131</span></div>
+						<div class="tent small" data-id="t-132" data-amp="none" data-size="15x20" data-description="Small tent site" data-price="17"><span class="text">132</span></div>
+						<div class="tent small ml-2" data-id="t-133" data-amp="none" data-size="15x20" data-description="Small tent site" data-price="17"><span class="text">133</span></div>
+						<div class="tent small" data-id="t-134" data-amp="none" data-size="15x20" data-description="Small tent site" data-price="17"><span class="text">134</span></div>
+						<div class="tent small" data-id="t-135" data-amp="none" data-size="15x20" data-description="Small tent site" data-price="17"><span class="text">135</span></div>
+						<div class="tent small" data-id="t-136" data-amp="none" data-size="15x20" data-description="Small tent site" data-price="17"><span class="text">136</span></div>
+						<div class="tent small ml-2" data-id="t-137" data-amp="none" data-size="15x20" data-description="Small tent site" data-price="17"><span class="text">137</span></div>
+						<div class="tent small" data-id="t-138" data-amp="none" data-size="15x20" data-description="Small tent site" data-price="17"><span class="text">138</span></div>
+						<div class="tent small" data-id="t-139" data-amp="none" data-size="15x20" data-description="Small tent site" data-price="17"><span class="text">139</span></div>
+					</div>
+					<div class="d-flex mt-1">
+						<div class="tent large" data-id="t-110" data-amp="none" data-size="20x25" data-description="Large tent site" data-price="18"><span class="text">110</span></div>
+						<div class="tent large" data-id="t-111" data-amp="none" data-size="20x25" data-description="Large tent site" data-price="18"><span class="text">111</span></div>
+						<div class="tent large" data-id="t-112" data-amp="none" data-size="20x25" data-description="Large tent site" data-price="18"><span class="text">112</span></div>
+						<div class="tent large" data-id="t-113" data-amp="none" data-size="20x25" data-description="Large tent site" data-price="18"><span class="text">113</span></div>
+						<div class="tent large" data-id="t-114" data-amp="none" data-size="20x25" data-description="Large tent site" data-price="18"><span class="text">114</span></div>
+						<div class="tent large" data-id="t-115" data-amp="none" data-size="20x25" data-description="Large tent site" data-price="18"><span class="text">115</span></div>
+						<div class="tent large" data-id="t-116" data-amp="none" data-size="20x25" data-description="Large tent site" data-price="18"><span class="text">116</span></div>
+						<div class="tent large" data-id="t-117" data-amp="none" data-size="20x25" data-description="Large tent site" data-price="18"><span class="text">117</span></div>
+						<div class="tent large" data-id="t-118" data-amp="none" data-size="20x25" data-description="Large tent site" data-price="18"><span class="text">118</span></div>
+						<div class="tent large" data-id="t-119" data-amp="none" data-size="20x25" data-description="Large tent site" data-price="18"><span class="text">119</span></div>
+						<div class="tent large" data-id="t-120" data-amp="none" data-size="20x25" data-description="Large tent site" data-price="18"><span class="text">120</span></div>
+						<div class="tent large" data-id="t-121" data-amp="none" data-size="20x25" data-description="Large tent site" data-price="18"><span class="text">121</span></div>
+					</div>
 				</div>
 			</div>
 
@@ -809,31 +865,47 @@
 						</div>
 					</div>
 
-					<div class="d-flex justify-center mt-1">
+					<div class="d-flex justify-end mt-1">
 						<div class="tent jumbo" data-id="t-55" data-amp="none" data-size="25x25" data-price="18" data-description="Jumbo tent site"><span class="text">55</span></div>
 						<div class="tent jumbo" data-id="t-56" data-amp="none" data-size="25x25" data-price="18" data-description="Jumbo tent site"><span class="text">56</span></div>
 					</div>
 
 					<div class="d-flex justify-end mt-2">
+						<div class="d-flex-col mr-2">
+							<div class="rv electric wide" data-id="rv-g" data-amp="30" data-price="40" data-size="20x40" data-description="Camper site"><span class="text">RV-G</span></div>
+							<div class="rv electric wide mt-1" data-id="rv-m" data-amp="30" data-price="40" data-size="20x40" data-description="Camper site"><span class="text">RV-M</span></div>
+						</div>
 						<div class="tent jumbo" data-id="t-57" data-amp="none" data-size="25x25" data-price="18" data-description="Jumbo tent site"><span class="text">57</span></div>
 						<div class="tent jumbo" data-id="t-58" data-amp="none" data-size="25x25" data-price="18" data-description="Jumbo tent site"><span class="text">58</span></div>
 						<div class="tent jumbo" data-id="t-59" data-amp="none" data-size="25x25" data-price="18" data-description="Jumbo tent site"><span class="text">59</span></div>
 					</div>
 				</div>
 
-				<div class="d-flex-col mt-4 ml-5">
-					<div class="d-flex ml-1">
-						<div class="tent medium" data-id="t-93" data-amp="none" data-size="20x20" data-price="12" data-description="Medium tent site"><span class="text">93</span></div>
-						<div class="tent medium" data-id="t-94" data-amp="none" data-size="20x20" data-price="12" data-description="Medium tent site"><span class="text">94</span></div>
-						<div class="tent medium" data-id="t-95" data-amp="none" data-size="20x20" data-price="12" data-description="Medium tent site"><span class="text">95</span></div>
-					</div>
-					<div class="d-flex ml-1">
-						<div class="tent medium" data-id="t-90" data-amp="none" data-size="20x20" data-price="12" data-description="Medium tent site"><span class="text">90</span></div>
-						<div class="tent medium" data-id="t-91" data-amp="none" data-size="20x20" data-price="12" data-description="Medium tent site"><span class="text">91</span></div>
-						<div class="tent medium" data-id="t-92" data-amp="none" data-size="20x20" data-price="12" data-description="Medium tent site"><span class="text">92</span></div>
+				<div class="d-flex-col mt-4 ml-3">
+					<div class="d-flex">
+						<div class="d-flex-col">
+							<div class="tent medium" data-id="t-213" data-amp="none" data-size="20x20" data-price="17" data-description="Medium tent site"><span class="text">213</span></div>
+							<div class="tent medium" data-id="t-210" data-amp="none" data-size="20x20" data-price="17" data-description="Medium tent site"><span class="text">210</span></div>
+							<div class="tent medium" data-id="t-93" data-amp="none" data-size="20x20" data-price="17" data-description="Medium tent site"><span class="text">93</span></div>
+							<div class="tent medium" data-id="t-90" data-amp="none" data-size="20x20" data-price="17" data-description="Medium tent site"><span class="text">90</span></div>
+						</div>
+						<div class="d-flex-col">
+							<div class="tent medium" data-id="t-214" data-amp="none" data-size="20x20" data-price="17" data-description="Medium tent site"><span class="text">214</span></div>	
+							<div class="tent medium" data-id="t-211" data-amp="none" data-size="20x20" data-price="17" data-description="Medium tent site"><span class="text">211</span></div>
+							<div class="tent medium" data-id="t-94" data-amp="none" data-size="20x20" data-price="17" data-description="Medium tent site"><span class="text">94</span></div>
+							<div class="tent medium" data-id="t-91" data-amp="none" data-size="20x20" data-price="17" data-description="Medium tent site"><span class="text">91</span></div>
+						</div>
+						<div class="d-flex-col ml-1">
+							<div class="tent medium" data-id="t-215" data-amp="none" data-size="20x20" data-price="17" data-description="Medium tent site"><span class="text">215</span></div>	
+							<div class="tent medium" data-id="t-212" data-amp="none" data-size="20x20" data-price="17" data-description="Medium tent site"><span class="text">212</span></div>
+							<div class="tent medium" data-id="t-95" data-amp="none" data-size="20x20" data-price="17" data-description="Medium tent site"><span class="text">95</span></div>
+							<div class="tent medium" data-id="t-92" data-amp="none" data-size="20x20" data-price="17" data-description="Medium tent site"><span class="text">92</span></div>
+							<div class="tent medium" data-id="t-72" data-amp="none" data-size="20x20" data-price="17" data-description="Medium tent site"><span class="text">72</span></div>
+							<div class="tent medium" data-id="t-71" data-amp="none" data-size="20x20" data-price="17" data-description="Medium tent site"><span class="text">71</span></div>
+						</div>
 					</div>
 
-					<div class="d-flex mt-3">
+					<div class="d-flex">
 						<div class="d-flex-col">
 							<div class="tent medium" data-id="t-86" data-amp="none" data-size="20x20" data-price="12" data-description="Medium tent site"><span class="text">86</span></div>
 							<div class="tent medium" data-id="t-84" data-amp="none" data-size="20x20" data-price="12" data-description="Medium tent site"><span class="text">84</span></div>
@@ -864,7 +936,7 @@
 					</div>
 				</div>
 
-				<div class="d-flex-col justify-center mt-2">
+				<div class="checkin-tents d-flex-col justify-center">
 					<div class="tent medium" data-id="t-69" data-amp="none" data-size="20x20" data-price="12" data-description="Medium tent site"><span class="text">69</span></div>
 					<div class="tent medium" data-id="t-68" data-amp="none" data-size="20x20" data-price="12" data-description="Medium tent site"><span class="text">68</span></div>
 					<div class="tent medium" data-id="t-67" data-amp="none" data-size="20x20" data-price="12" data-description="Medium tent site"><span class="text">67</span></div>
@@ -1147,9 +1219,6 @@
 			}
 
 			initialize();
-
 		</script>
-
-
 	</body>
 </html>
