@@ -994,20 +994,21 @@
 				if (dialog) {
 					dialog.show();
 					const target = e.target.closest(".rv, .tent");
-					const siteId = target.getAttribute("data-id");
-					const type = siteId.startsWith("rv") ? "RV" : "Tent";
+					const siteTitle = target.getAttribute("data-id");
+					const siteId = target.getAttribute("data-product-id");
+					const type = siteTitle.startsWith("rv") ? "RV" : "Tent";
 					const price = target.getAttribute("data-price");
 					const amp = target.getAttribute("data-amp");
 					const size = target.getAttribute("data-size");
 					const description = target.getAttribute("data-description");
-					drawerCampsiteName.innerText = siteId.replace("t-", "").replace("e", "").toUpperCase();
+					drawerCampsiteName.innerText = siteTitle.replace("t-", "").replace("e", "").toUpperCase();
 					drawerCampsiteDesc.innerText = description;
 					drawerCampsiteType.innerText = type;
 					drawerCampsiteSize.innerText = size;
 					drawerCampsiteAmp.innerText = amp == "none" ? "None" : amp + " amp";
 					drawerCampsitePrice.innerText = "$" + price;
 					closeDialogBtn.addEventListener("click", () => dialog.hide(), { once: true });
-					chooseSiteBtn.addEventListener("click", () => siteChosen(siteId));
+					chooseSiteBtn.addEventListener("click", () => siteChosen(siteTitle, siteId));
 				}
 			}
 
@@ -1050,8 +1051,8 @@
 				}
 			}
 
-			function siteChosen(siteId) {
-				window.top.postMessage({ message: "site-chosen", site: siteId }, "*");
+			function siteChosen(siteTitle, productId) {
+				window.top.postMessage({ message: "site-chosen", site: siteTitle, id: productId }, "*");
 				const dialog = document.querySelector("sl-dialog");
 				if (dialog) {
 					dialog.hide();
