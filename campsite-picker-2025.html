@@ -23,6 +23,10 @@
 				flex-direction: column;
 			}
 
+			.d-hide {
+				display: none;
+			}
+
 			.align-flex-end {
 				align-self: flex-end;
 			}
@@ -108,6 +112,20 @@
 
 			.gap-3 {
 				gap: 20px;
+			}
+
+			.loading {
+				position: absolute;
+				top: 45vh;
+				left: 0;
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+
+				sl-progress-bar {
+					width: 75%;
+				}
 			}
 
 			.key {
@@ -519,14 +537,20 @@
 
 		</style>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.2.0/dist/themes/light.css" />
-		<script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.2.0/dist/components/dialog/dialog.js"></script>
-		<script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.2.0/dist/components/button/button.js"></script>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css" />
+		<script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/components/dialog/dialog.js"></script>
+		<script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/components/button/button.js"></script>
+		<script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/components/progress-bar/progress-bar.js"></script>
+
 	</head>
 	<body>
-		<!-- The main section includes everything except the footer section -->
-		<div class="main d-flex">
+		<div class="loading">
+			<sl-progress-bar indeterminate></sl-progress-bar>
 
+			<h3 class="error d-hide">Woops. An error occurred. Reload the page and if the problem persists, please <a href="https://proclaimmusicfestival.com/pages/contact/" target="_blank">contact us</a>.</h3>
+		</div>
+
+		<div class="main d-flex d-hide">
 			<div class="key d-flex">
 				<div><div class="square electric"></div> Electric</div>
 				<div><div class="square"></div> Non-electric</div>
@@ -988,6 +1012,7 @@
 			const rvs = Array.from(document.querySelectorAll(".rv"));
 			const tents = Array.from(document.querySelectorAll(".tent"));
 			const allSites = Array.from(rvs).concat(Array.from(tents));
+			const backendCampsites = [];
 
 			function siteClicked(e) {
 				const dialog = document.querySelector("sl-dialog");
@@ -1071,90 +1096,6 @@
 					if (id !== `t-${text}`) {
 						console.error(`Validation error: tent ${id} has text ${text}`);
 					}
-
-					const price = t.getAttribute("data-price");
-					const size = t.getAttribute("data-size");
-					const amps = t.getAttribute("data-amp");
-					const description = t.getAttribute("data-description");
-					const sizeClass = Array.from(t.classList).find(c => c === "jumbo" || c === "large" || c === "medium" || c === "small");
-
-					if (sizeClass === "jumbo") {
-						// Jumbo tents with electricity should be $27
-						if (amps === "15" && price !== "27") {
-							console.error(`Validation error: expected ${id} to be $27, but actual is ${price}`);
-						}
-
-						// Jumbo tents without electricity should be $18
-						if (amps === "none" && price !== "18") {
-							console.error(`Validation error: expected ${id} to be $18, but actual is ${price}`);
-						}
-
-						// Jumbo tents should be 25x25.
-						if (size !== "25x25") {
-							console.error(`Validation error: expected ${id} to be 25x25, but actual is ${size}`);
-						}
-
-						// Jumbo tent descriptions should be "Jumbo tent site"
-						if (description !== "Jumbo tent site") {
-							console.error(`Validation error: expected ${id} to have description "Jumbo tent site"`);
-						}
-					}
-
-					if (sizeClass === "large") {
-						// Large tents with electricity should be be $27
-						if (amps === "15" && price !== "27") {
-							console.error(`Validation error: expected ${id} to be $27, but actual is ${price}`);
-						}
-
-						// Large tents with no electricity should be be $18
-						if (amps === "none" && price !== "18") {
-							console.error(`Validation error: expected ${id} to be $18, but actual is ${price}`);
-						}
-
-						// Large tents should be 20x25.
-						if (size !== "20x25") {
-							console.error(`Validation error: expected ${id} to be 20x25, but actual is ${size}`);
-						}
-					}
-
-					if (sizeClass === "medium") {
-						// Medium tents with electricity should be $22	
-						if (amps === "15" && price !== "22") {
-							console.error(`Validation error: expected ${id} to be $22, but actual is ${price}`);
-						}
-
-						// Medium tents with no electricity should be $12
-						if (amps === "none" && price !== "12") {
-							console.error(`Validation error: expected ${id} to be $12, but actual is ${price}`);
-						}
-
-						// Medium tents should be 20x20.
-						if (size !== "20x20") {
-							console.error(`Validation error: expected ${id} to be 20x20, but actual is ${size}`);
-						}
-					}
-
-					if (sizeClass === "small") {
-						// Small tents with electricity should be $22
-						if (amps === "15" && price !== "22") {
-							console.error(`Validation error: expected ${id} to be $22, but actual is ${price}`);
-						}
-
-						// Small tents without electricity should not exist in 2025.
-						if (amps === "none") {
-							console.error(`Validation error: Didn't expect any small tents without electricity in 2025, but found ${id}`);
-						}
-
-						// Small tents should be 15x20.
-						if (size !== "15x20") {
-							console.error(`Validation error: expected ${id} to be 15x20, but actual is ${size}`);
-						}
-					}
-
-					// Small tents with electricity should be $22
-					if (!sizeClass) {
-						console.error("Missing size class for tent", id);
-					}
 				});
 
 				rvs.forEach(r => {
@@ -1164,78 +1105,66 @@
 					if (id !== text) {
 						console.error(`Validation error: RV ${id} has text ${text}`);
 					}
+				});
 
-					// RVs with 30 amp electric should be $40
-					const amp = r.getAttribute("data-amp");
-					const price = r.getAttribute("data-price");
-					if (amp === "30" && price !== "40") {
-						console.error(`Validation error: expected ${id} with 30 amp electric to be $40, but actual is ${price}`);
+				// For validation, verify that we don't have any sites in the DOM that are missing in the backend.
+				const domSitesMissingInBackend = allSites.filter(s => !backendCampsites.some(c => c.title === s.getAttribute("data-id")));
+				if (domSitesMissingInBackend.length > 0) {
+					console.warn("Found sites in the DOM that are missing in the backend:", domSitesMissingInBackend.map(s => s.getAttribute("data-id")));
+				}
+			}
+
+			function showCampsites() {
+				document.querySelector(".loading").classList.add("d-hide");
+				document.querySelector(".main").classList.remove("d-hide");
+			}
+
+			function syncDomWithBackendData() {
+				// Validate the backend data with the DOM 
+				backendCampsites.forEach(c => {
+					// Find the corresponding site in the DOM
+					const campsiteElement = allSites.find(s => s.getAttribute("data-id") === c.title);
+					if (!campsiteElement) {
+						console.warn(`Found campsite ${c.title} in backend, but not in DOM`);
+						return;
 					}
 
-					// RVs with 15 amp electric should be $30
-					if (amp === "15" && price !== "30") {
-						console.error(`Validation error: expected ${id} with 15 amp electric to be $30, but actual is ${price}`);
-					}
-
-					// RVs with no electric should be $22
-					if (amp === "none" && price !== "22") {
-						console.error(`Validation error: expected ${id} with no electric to be $22, but actual is ${price}`);
-					}
-
-					// All RV spots should be 20x40.
-					const size = r.getAttribute("data-size");
-					if (size !== "20x40") {
-						console.error(`Validation error: expected ${id} to be 20x40, but actual is ${size}`);
+					// Set the price, product ID, and availability of the site.
+					campsiteElement.setAttribute("data-price", c.price);
+					campsiteElement.setAttribute("data-product-id", c.id);
+					if (!c.inStock) {
+						disableSites([c.title]);
 					}
 				});
 			}
 
-			async function syncWithBackendCampsiteData() {
+			async function getBackendCampsites() {
 				// Fetch the campsites from the backend.
 				// Result will be a JSON array of {"id":9383,"title":"rv-1","inStock":false,"price":30}
 				try {
 					const campsiteFetch = await fetch("https://inventory.proclaimmusicfestival.com/inventory/getlodgingvariants");
 					const campsiteJson = await campsiteFetch.json();
-					campsiteJson.forEach(c => {
-						// Find the corresponding site in the DOM
-						const campsiteElement = allSites.find(s => s.getAttribute("data-id") === c.title);
-						if (!campsiteElement) {
-							console.warn(`Found campsite ${c.title} in backend, but not in DOM`);
-							return;
-						}
-
-						// Set the price, product ID, and availability of the site.
-						campsiteElement.setAttribute("data-price", c.price);
-						campsiteElement.setAttribute("data-product-id", c.id);
-						if (!c.inStock) {
-							disableSites([c.title]);
-						}
-					});
-
-					// For validation, verify that we don't have any sites in the DOM that are missing in the backend.
-					const domSitesMissingInBackend = allSites.filter(s => !campsiteJson.some(c => c.title === s.getAttribute("data-id")));
-					if (domSitesMissingInBackend.length > 0) {
-						console.warn("Found sites in the DOM that are missing in the backend:", domSitesMissingInBackend.map(s => s.getAttribute("data-id")));
-					}
-
+					return campsiteJson;
 				} catch (error) {
 					console.error("Error fetching backend campsite data", error);
-				}
+					document.querySelector(".loading sl-progress-bar").classList.add("d-hide"); // Hide the loading bar
+					document.querySelector(".loading .error").classList.remove("d-hide"); // Show the error message
+					throw error;
+				} 
 			}
 
 
-			function initialize() {
-				const shouldValidate = location.href.includes("localhost") || location.href.includes("file://");
-				if (shouldValidate) { 
-					validate();
-				}
+			async function initialize() {
+				backendCampsites = await getBackendCampsites();
+				syncDomWithBackendData();
+				validate();
 
-				// We were asked to disable some sites?
-				const queryParams = new URLSearchParams(location.search);
-				const disabledParam = queryParams.get("disable");
-				if (disabledParam) {
-					disableSites(disabledParam.split(","));
-				}
+				// // We were asked to disable some sites?
+				// const queryParams = new URLSearchParams(location.search);
+				// const disabledParam = queryParams.get("disable");
+				// if (disabledParam) {
+				// 	disableSites(disabledParam.split(","));
+				// }
 
 				// Were we asked to show only tents or RVs?
 				const hideParam = queryParams.get("hide");
@@ -1255,8 +1184,6 @@
 
 				listenForSiteClicked();
 				listenForPageCloseClicked();
-
-				syncWithBackendCampsiteData();
 			}
 
 			initialize();
