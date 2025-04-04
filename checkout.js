@@ -1,6 +1,4 @@
 class ProclaimCheckout {
-   unavailableCampsites = []; // Array of { night: "Wednesday", campsite: "t-51", id: 9489 }
-   allCampsites = []; // Array of { night: "Wednesday", campsite: "t-51", id: 9489 }
    isAddingLodgingToCart = false;
    cartContents = []; // Array of cart items, e.g. { id: 7984, quantity: 1, name: "Full Event Pass", ... }
    adultTshirtId = 9671;
@@ -8,8 +6,6 @@ class ProclaimCheckout {
    
    init() {
       // this.makeBtnsAjax(); // COMMENTED OUT: no longer needed as of 1/28/25
-      this.fetchAllCampsites().then(results => this.allCampsites = results);
-      this.fetchUnavailableCampsites().then(results => this.unavailableCampsites = results);
       this.disableMoreThan5NightsAtCampsite();
       this.fetchCartContents().then(results => this.cartContents = results);
       this.listenForWooCommerceEvents();
@@ -260,7 +256,7 @@ class ProclaimCheckout {
          if (e.data.message === "cancel") {
             this.closeIframe();
          } else if (e.data.message === "site-chosen") {
-            this.siteChosen(e.data.site);
+            this.siteChosen(e.data.site, e.data.id);
          }
       });
    }
@@ -314,8 +310,7 @@ class ProclaimCheckout {
 
       // Create our iframe.
       const pickerFrame = document.createElement("iframe");
-      const unavailableCampsites = this.unavailableCampsites.map(s => s.campsite);
-      pickerFrame.src = `https://judahgabriel.github.io/Proclaim/campsite-picker-2025.html?disable=${unavailableCampsites.join(",")}`;
+      pickerFrame.src = "https://judahgabriel.github.io/Proclaim/campsite-picker-2025.html";
       pickerFrame.title = "Choose your campsite";
 
       // Create our container which will allow scrolling as needed.
@@ -341,12 +336,11 @@ class ProclaimCheckout {
 
    /**
     * 
-    * @param {string} siteId 
+    * @param {string} siteId The name of the site, e.g. "t-135"
+    * @param {number} productId The Id of the chosen product variation, e.g. 9321
     */
-   siteChosen(siteId) {
+   siteChosen(siteId, productId) {
       this.closeIframe();
-
-      const productId = this.getCampsiteProductId(siteId);
 
       // Set the variation value so that we can add to cart.
       const hiddenVariationField = document.querySelector("#product-8045 .variation_id");
@@ -362,35 +356,7 @@ class ProclaimCheckout {
       selectedSiteHeader.innerText = siteId.toUpperCase();
       selectedSiteHeader.style.display = "block";
    }
-
-   getCampsiteProductId(campsiteName) {
-      const product = this.allCampsites.find(c => c.campsite === campsiteName)
-      if (!product) {
-         throw new Error("Couldn't find campsite name " + campsiteName);
-      }
-      return product.id;
-   }
-
-   /**
-    * Fetches the campsites that are currently reserved.
-    * @returns {Array} An array of { night: "Wednesday", campsite: "t-51", id: 8839 }. NOTE: as of 2024, night will always be an empty string, as we no longer support per-night campsites. Instead, campsites are rented for the whole event.
-    */
-   fetchUnavailableCampsites() {
-      const maxRetries = 3;
-      const url = "https://inventory.proclaimmusicfestival.com/inventory/getOutOfInventoryLodgingNightCampsite";
-      return this.fetchJson(url, maxRetries);
-   }
-
-   /**
-    * Fetches all campsites.
-    * * @returns {Array} An array of { night: "Wednesday", campsite: "t-51", id: 8839 }. NOTE: as of 2024, night will always be an empty string, as we no longer support per-night campsites. Instead, campsites are rented for the whole event.
-    */
-   fetchAllCampsites() {
-      const maxRetries = 3;
-      const url = "https://inventory.proclaimmusicfestival.com/inventory/getAllCampsites";
-      return this.fetchJson(url, maxRetries);
-   }
-
+   
    fetchCartContents() {
       const url = "/wp-json/wc/store/v1/cart/items";
       return this.fetchJson(url, 0).then(results => {
