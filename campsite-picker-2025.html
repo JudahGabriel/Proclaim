@@ -24,7 +24,7 @@
 			}
 
 			.d-hide {
-				display: none;
+				display: none !important;
 			}
 
 			.align-flex-end {
@@ -1157,6 +1157,8 @@
 			async function initialize() {
 				const campsites = await getBackendCampsites();
 				backendCampsites.push(...campsites);
+
+				showCampsites();
 				syncDomWithBackendData();
 				validate();
 
