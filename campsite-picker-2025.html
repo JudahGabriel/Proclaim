@@ -1189,8 +1189,45 @@
 				});
 			}
 
+			async function syncWithBackendCampsiteData() {
+				// Fetch the campsites from the backend.
+				// Result will be a JSON array of {"id":9383,"title":"rv-1","inStock":false,"price":30}
+				try {
+					const campsiteFetch = await fetch("https://inventory.proclaimmusicfestival.com/inventory/getlodgingvariants");
+					const campsiteJson = await campsiteFetch.json();
+					campsiteJson.forEach(c => {
+						// Find the corresponding site in the DOM
+						const campsiteElement = allSites.find(s => s.getAttribute("data-id") === c.title);
+						if (!campsiteElement) {
+							console.warn(`Found campsite ${c.title} in backend, but not in DOM`);
+							return;
+						}
+
+						// Set the price, product ID, and availability of the site.
+						campsiteElement.setAttribute("data-price", c.price);
+						campsiteElement.setAttribute("data-product-id", c.id);
+						if (!c.inStock) {
+							disableSites([c.title]);
+						}
+					});
+
+					// For validation, verify that we don't have any sites in the DOM that are missing in the backend.
+					const domSitesMissingInBackend = allSites.filter(s => !campsiteJson.some(c => c.title === s.getAttribute("data-id")));
+					if (domSitesMissingInBackend.length > 0) {
+						console.warn("Found sites in the DOM that are missing in the backend:", domSitesMissingInBackend.map(s => s.getAttribute("data-id")));
+					}
+
+				} catch (error) {
+					console.error("Error fetching backend campsite data", error);
+				}
+			}
+
+
 			function initialize() {
-				// validate();
+				const shouldValidate = location.href.includes("localhost") || location.href.includes("file://");
+				if (shouldValidate) { 
+					validate();
+				}
 
 				// We were asked to disable some sites?
 				const queryParams = new URLSearchParams(location.search);
@@ -1217,6 +1254,8 @@
 
 				listenForSiteClicked();
 				listenForPageCloseClicked();
+
+				syncWithBackendCampsiteData();
 			}
 
 			initialize();
