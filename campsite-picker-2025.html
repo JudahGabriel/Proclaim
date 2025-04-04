@@ -1155,7 +1155,8 @@
 
 
 			async function initialize() {
-				backendCampsites = await getBackendCampsites();
+				const campsites = await getBackendCampsites();
+				backendCampsites.push(...campsites);
 				syncDomWithBackendData();
 				validate();
 
